@@ -1,0 +1,24 @@
+@import '../utilities/variables';
+
+.display-user-page {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  padding: 20px;
+  h1 {
+    font-size: 2.5rem;
+    color: $font-color;
+    margin-bottom: 20px;
+    text-align: center;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .display-user-page {
+    h1 {
+      font-size: 1.5rem;
+    }
+  }
+}
