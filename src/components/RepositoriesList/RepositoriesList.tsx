@@ -1,4 +1,4 @@
-import React, { ReactElement, useEffect } from 'react';
+import React, { ReactElement, useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { RootState, AppDispatch } from '../../app/store';
 import { Link, useParams, useSearchParams } from 'react-router-dom';
@@ -11,39 +11,29 @@ const RepositoriesList = (): ReactElement => {
   const dispatch = useDispatch<AppDispatch>();
   const { username } = useParams<{ username: string }>();
   const [searchParams, setSearchParams] = useSearchParams();
+  const [page, setPage] = useState('1');
+  const [numberOfPages, setNumberOfPages] = useState('1');
+  useEffect(() => {
+    if (username && page) dispatch(getRepos({ username, page }));
+  }, [dispatch, page, username]);
 
   useEffect(() => {
-    const page = searchParams.get('page');
-    if (username && page) dispatch(getRepos({ username, page }));
-    else if (username) dispatch(getRepos({ username, page: '1' }));
-  }, [dispatch, searchParams, username]);
+    if (user) setNumberOfPages(user.number_of_repo_pages.toString());
+  }, [user]);
 
-  const handlePageChange = (e: React.MouseEvent<HTMLAnchorElement>) => {
+  const handlePageChange = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
-    searchParams.set('page', e.currentTarget.text);
-    setSearchParams(searchParams);
-  };
-
-  let pagesArray = [];
-  if (user)
-    for (
-      var pageNumber = 1;
-      pageNumber <= user.number_of_repo_pages;
-      pageNumber++
-    ) {
-      pagesArray.push(
-        <li key={pageNumber}>
-          {
-            <Link
-              to={`/${username}?page=${pageNumber}`}
-              onClick={handlePageChange}
-            >
-              {pageNumber}
-            </Link>
-          }
-        </li>
-      );
+    let newPage;
+    const target = e.target as HTMLButtonElement;
+    if (target.innerHTML === 'Previous') {
+      newPage = parseInt(page) - 1;
+    } else {
+      newPage = parseInt(page) + 1;
     }
+    searchParams.set('page', newPage.toString());
+    setSearchParams(searchParams);
+    setPage(newPage.toString());
+  };
 
   return (
     <div>
@@ -55,7 +45,17 @@ const RepositoriesList = (): ReactElement => {
           description={repo.description}
         />
       ))}
-      <ul>{pagesArray}</ul>
+      <div>
+        <button onClick={(e) => handlePageChange(e)} disabled={page === '1'}>
+          Previous
+        </button>
+        <button
+          onClick={(e) => handlePageChange(e)}
+          disabled={page === numberOfPages}
+        >
+          Next
+        </button>
+      </div>
     </div>
   );
 };
