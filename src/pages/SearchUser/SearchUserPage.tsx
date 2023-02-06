@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import SearchInput from '../../components/SearchInput/SearchInput';
 
 const SearchUserPage = () => {
   const [username, setUsername] = useState('');
@@ -15,10 +14,18 @@ const SearchUserPage = () => {
   };
 
   return (
-    <form onSubmit={onSubmit}>
-      <SearchInput onChange={onChange} />
-      <button>Search</button>
-    </form>
+    <div className='search-user-page'>
+      <h1>Search for a GitHub user</h1>
+      <form onSubmit={onSubmit} className='form-container'>
+        <input
+          className='search-input'
+          placeholder='Username'
+          onChange={onChange}
+          required
+        />
+        <button>Search</button>
+      </form>
+    </div>
   );
 };
 

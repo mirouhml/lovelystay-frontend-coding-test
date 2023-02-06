@@ -1,11 +1,11 @@
 import React from 'react';
-import UserInfo from '../../components/UserInfo/UserInfo';
-import RepositoriesList from '../../components/RepositoriesList/RepositoriesList';
+import UserInfoCard from '../../components/UserInfoCard';
+import RepositoriesList from '../../components/RepositoriesList';
 
 const DisplayUserPage = () => {
   return (
-    <div>
-      <UserInfo />
+    <div className='display-user-page'>
+      <UserInfoCard />
       <RepositoriesList />
     </div>
   );

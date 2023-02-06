@@ -1,21 +1,18 @@
 import React from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import './App.css';
 import DisplayUserPage from './pages/DisplayUser/DisplayUserPage';
-import SearchUserPage from './pages/SearchUser/SearchUser';
+import SearchUserPage from './pages/SearchUser/SearchUserPage';
 
 function App() {
   return (
-    <div className='App'>
+    <main>
       <BrowserRouter>
-        <main>
-          <Routes>
-            <Route path='/' element={<SearchUserPage />} />
-            <Route path='/:username' element={<DisplayUserPage />} />
-          </Routes>
-        </main>
+        <Routes>
+          <Route path='/' element={<SearchUserPage />} />
+          <Route path='/:username' element={<DisplayUserPage />} />
+        </Routes>
       </BrowserRouter>
-    </div>
+    </main>
   );
 }
 
