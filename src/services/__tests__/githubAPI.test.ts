@@ -1,5 +1,6 @@
+import fetch, { enableFetchMocks } from 'jest-fetch-mock';
 import { fetchUser, fetchRepos } from '../githubAPI';
-import fetch from 'jest-fetch-mock';
+enableFetchMocks();
 
 describe('fetchUser', () => {
   beforeEach(() => {
@@ -54,6 +55,10 @@ describe('fetchUser', () => {
 });
 
 describe('fetchRepos', () => {
+  beforeEach(() => {
+    fetch.resetMocks();
+  });
+
   it('should return an array of repositories', async () => {
     fetch.mockResponseOnce(
       JSON.stringify([
