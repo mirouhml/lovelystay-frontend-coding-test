@@ -1,10 +1,10 @@
-import React from 'react';
-import UserInfoCard from '../../components/UserInfoCard';
-import RepositoriesList from '../../components/RepositoriesList';
+import React, { ReactElement } from 'react';
+import UserInfoCard from '../components/UserInfoCard';
+import RepositoriesList from '../components/RepositoriesList';
 import { IoIosArrowBack } from 'react-icons/io';
 import { useNavigate } from 'react-router-dom';
 
-const DisplayUserPage = () => {
+const DisplayUserPage = (): ReactElement => {
   const navigate = useNavigate();
 
   const goBack = () => {

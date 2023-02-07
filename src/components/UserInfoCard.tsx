@@ -1,10 +1,10 @@
-import React, { useEffect } from 'react';
+import React, { ReactElement, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch } from '../app/store';
 import { getUser } from '../slices/userSlice';
 
-const UserInfoCard = () => {
+const UserInfoCard = (): ReactElement => {
   const dispatch = useDispatch<AppDispatch>();
   const { user, status, error } = useSelector((state: any) => state.user);
   const { username } = useParams<{ username: string }>();

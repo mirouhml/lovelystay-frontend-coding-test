@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
+import React, { ReactElement, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-const SearchUserPage = () => {
+const SearchUserPage = (): ReactElement => {
   const [username, setUsername] = useState('');
   const navigate = useNavigate();
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
