@@ -1,5 +1,4 @@
 @import '../utilities/variables';
-@import '../components/repository_item';
 
 .search-user-page {
   width: 100%;
@@ -16,7 +15,7 @@
   }
   .form-container {
     padding: 60px 30px;
-    width: 80%;
+    width: 60%;
     background-color: $secondary-bg;
     display: flex;
     flex-direction: row;
@@ -25,10 +24,10 @@
     border-radius: 7px;
     gap: 10px;
     .search-input {
-      flex-grow: 4;
+      flex-grow: 6;
       border-radius: 3px;
       border: 1px solid $border;
-      padding: 10px 5px;
+      padding: 10px;
       color: $font-color;
       background-color: $main-bg;
       &:focus {

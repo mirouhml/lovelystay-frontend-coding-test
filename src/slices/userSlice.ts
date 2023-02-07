@@ -66,10 +66,8 @@ export const userSlice = createSlice({
           if (isAPIError(action.payload)) {
             state.status.user = 'failed';
             state.error = action.payload.message;
-            console.log('here');
             return;
           }
-          console.log('here');
           state.status.user = 'success';
           state.user = action.payload;
         }

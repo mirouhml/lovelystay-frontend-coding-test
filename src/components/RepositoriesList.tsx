@@ -24,10 +24,8 @@ const RepositoriesList = (): ReactElement => {
   }, [dispatch, page, username, status.user]);
 
   useEffect(() => {
-    console.log(user);
     if (user !== undefined && status.user === 'success') {
       setNumberOfPages(user.number_of_repo_pages.toString());
-      console.log(user);
     }
   }, [user, status.user]);
 
@@ -40,7 +38,6 @@ const RepositoriesList = (): ReactElement => {
     } else {
       newPage = parseInt(page) + 1;
     }
-    console.log(newPage);
     searchParams.set('page', newPage.toString());
     setSearchParams(searchParams);
     setPage(newPage.toString());
@@ -78,13 +75,13 @@ const RepositoriesList = (): ReactElement => {
   else if (status.user === 'success' && status.repos === 'loading')
     return (
       <div className='repositories-container'>
-        <p className='repositories-loading'>Loading...</p>
+        <p className='status-message'>Loading...</p>
       </div>
     );
   else if (status.user === 'success' && status.repos === 'failed')
     return (
       <div className='repositories-container'>
-        <p className='repositories-loading'>{error}</p>
+        <p className='status-message'>{error}</p>
       </div>
     );
   else return <></>;

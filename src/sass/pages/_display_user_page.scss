@@ -1,5 +1,6 @@
 @import '../utilities/variables';
 @import '../components/repositories_list';
+@import '../components/repository_item';
 @import '../components/user_info_card';
 
 .display-user-page {
@@ -9,6 +10,25 @@
   align-items: center;
   gap: 20px;
   padding: 20px;
+  .back-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    top: 50px;
+    left: 40px;
+    border: 2px solid $border;
+    width: 60px;
+    height: 60px;
+    border-radius: 50px;
+    background-color: $secondary-bg;
+    color: $primary-color;
+    cursor: pointer;
+    transition: all 0.1s ease-in-out;
+    &:hover {
+      transform: scale(1.1);
+    }
+  }
   h1 {
     font-size: 2.5rem;
     color: $font-color;
@@ -19,6 +39,11 @@
 
 @media screen and (max-width: 768px) {
   .display-user-page {
+    .back-button {
+      left: 20px;
+      width: 40px;
+      height: 40px;
+    }
     h1 {
       font-size: 1.5rem;
     }
