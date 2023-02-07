@@ -1,0 +1,62 @@
+@import '../utilities/variables';
+
+.user-info-card {
+  width: 80%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 80px;
+  gap: 10px;
+  background-color: $secondary-bg;
+  border-radius: 7px;
+  gap: 10px;
+  .user-avatar {
+    width: 250px;
+    height: 250px;
+    border-radius: 50%;
+    object-fit: cover;
+  }
+  .status-message {
+    font-size: 1.5rem;
+    color: $font-color;
+    text-align: center;
+  }
+  .user-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    flex-grow: 1;
+    text-align: center;
+    .user-name {
+      font-size: 2rem;
+      color: $font-color;
+      margin: 0;
+    }
+    .user-repositories {
+      font-size: 1.5rem;
+      color: $font-color;
+    }
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .user-info-card {
+    flex-direction: column;
+    padding: 40px 20px;
+    width: 100%;
+    .user-avatar {
+      width: 150px;
+      height: 150px;
+    }
+    .user-info {
+      .user-name {
+        font-size: 1.5rem;
+      }
+      .user-repositories {
+        font-size: 1rem;
+      }
+    }
+  }
+}
