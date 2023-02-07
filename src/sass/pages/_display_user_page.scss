@@ -15,12 +15,12 @@
     align-items: center;
     justify-content: center;
     position: fixed;
-    top: 50px;
+    top: 40px;
     left: 40px;
     border: 2px solid $border;
     width: 60px;
     height: 60px;
-    border-radius: 50px;
+    border-radius: 7px;
     background-color: $secondary-bg;
     color: $primary-color;
     cursor: pointer;
@@ -40,6 +40,7 @@
 @media screen and (max-width: 768px) {
   .display-user-page {
     .back-button {
+      top: 50px;
       left: 20px;
       width: 40px;
       height: 40px;
