@@ -13,3 +13,11 @@ export type Repository = {
   name: string;
   description: string;
 };
+
+export type APIError = {
+  message: string;
+};
+
+export type APIUserResponse = User | APIError;
+
+export type APIRepositoryResponse = Repository[] | APIError;
