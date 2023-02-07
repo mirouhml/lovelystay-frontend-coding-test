@@ -47,14 +47,5 @@
   },
   "devDependencies": {
     "jest-fetch-mock": "^3.0.3"
-  },
-  "jest": {
-    "automock": false,
-    "testPathIgnorePatterns": [
-      "types"
-    ],
-    "setupFiles": [
-      "./setupJest.ts"
-    ]
   }
 }
