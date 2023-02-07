@@ -75,12 +75,18 @@ const RepositoriesList = (): ReactElement => {
   else if (status.user === 'success' && status.repos === 'loading')
     return (
       <div className='repositories-container'>
+        <h1 className='repositories-title' ref={title}>
+          {username}'s Repositories
+        </h1>
         <p className='status-message'>Loading...</p>
       </div>
     );
   else if (status.user === 'success' && status.repos === 'failed')
     return (
       <div className='repositories-container'>
+        <h1 className='repositories-title' ref={title}>
+          {username}'s Repositories
+        </h1>
         <p className='status-message'>{error}</p>
       </div>
     );
