@@ -45,6 +45,20 @@ describe('fetchUser', () => {
     });
   });
 
+  it('should return an error message if the API is down', async () => {
+    fetch.mockResponseOnce(
+      JSON.stringify({
+        message: 'API is down',
+      }),
+      { status: 503 }
+    );
+
+    const user = await fetchUser('not-a-user');
+    expect(user).toEqual({
+      message: 'API is down',
+    });
+  });
+
   it('should return an error message if something goes wrong', async () => {
     fetch.mockRejectOnce(() => Promise.reject('API is down'));
     const user = await fetchUser('error');
@@ -88,6 +102,20 @@ describe('fetchRepos', () => {
         description: 'This is repo2',
       },
     ]);
+  });
+
+  it('should return an error message if the API is down', async () => {
+    fetch.mockResponseOnce(
+      JSON.stringify({
+        message: 'API is down',
+      }),
+      { status: 503 }
+    );
+
+    const user = await fetchRepos('error', '1');
+    expect(user).toEqual({
+      message: 'API is down',
+    });
   });
 
   it('should return an error message if something goes wrong', async () => {
