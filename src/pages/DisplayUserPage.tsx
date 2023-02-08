@@ -16,7 +16,6 @@ const DisplayUserPage = (): ReactElement => {
 
   return (
     <div className='display-user-page'>
-      <h1>User Result</h1>
       {/* Back button to navigate to the previous page */}
       <button
         className='back-button'

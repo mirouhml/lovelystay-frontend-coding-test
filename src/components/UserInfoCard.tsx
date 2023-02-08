@@ -26,9 +26,9 @@ const UserInfoCard = (): ReactElement => {
       <div className='user-info-card' aria-label='user-info'>
         <img className='user-avatar' src={user?.avatar_url} alt='User avatar' />
         <div className='user-info'>
-          <p className='user-name'>
+          <h1 className='user-name'>
             {user?.name ? user.name : 'No name was found'}
-          </p>
+          </h1>
           <p className='user-repositories'>
             Number of public repositories: {user?.public_repos}
           </p>

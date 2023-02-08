@@ -4,9 +4,6 @@ exports[`DisplayUserPage should match the snapshot 1`] = `
 <div
   className="display-user-page"
 >
-  <h1>
-    User Result
-  </h1>
   <button
     aria-label="back"
     className="back-button"
