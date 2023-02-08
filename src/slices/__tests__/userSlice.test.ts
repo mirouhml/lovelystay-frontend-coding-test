@@ -176,4 +176,45 @@ describe('userSlice', () => {
       error: 'Something went wrong',
     });
   });
+
+  it('should call getUser thunk', async () => {
+    const dispatch = jest.fn();
+    const getState = jest.fn();
+
+    await getUser('johndoe')(dispatch, getState, null);
+
+    expect(dispatch).toHaveBeenCalledWith({
+      type: getUser.pending.type,
+      payload: undefined,
+      meta: {
+        arg: 'johndoe',
+        requestId: expect.any(String),
+        requestStatus: 'pending',
+      },
+    });
+  });
+
+  it('should call getRepos thunk', async () => {
+    const dispatch = jest.fn();
+    const getState = jest.fn();
+
+    await getRepos({ username: 'johndoe', page: '1' })(
+      dispatch,
+      getState,
+      null
+    );
+
+    expect(dispatch).toHaveBeenCalledWith({
+      type: getRepos.pending.type,
+      payload: undefined,
+      meta: {
+        arg: {
+          username: 'johndoe',
+          page: '1',
+        },
+        requestId: expect.any(String),
+        requestStatus: 'pending',
+      },
+    });
+  });
 });

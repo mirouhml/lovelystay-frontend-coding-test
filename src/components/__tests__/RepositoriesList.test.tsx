@@ -146,7 +146,6 @@ describe('RepositoriesList', () => {
         </MemoryRouter>
       </Provider>
     );
-    window.HTMLElement.prototype.scrollIntoView = jest.fn();
     fireEvent.click(screen.getByText('Next'));
     expect(screen.getByText('Next')).toBeDisabled();
     expect(screen.getByText('Previous')).toBeEnabled();
