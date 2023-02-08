@@ -16,7 +16,7 @@ describe('SearchUserPage', () => {
     expect(screen.getByText('Search for a GitHub user')).toBeInTheDocument();
   });
 
-  it('Should have a search input', () => {
+  it('should have a search input', () => {
     render(
       <MemoryRouter>
         <SearchUserPage />
@@ -25,7 +25,7 @@ describe('SearchUserPage', () => {
     expect(screen.getByPlaceholderText('Username')).toBeInTheDocument();
   });
 
-  it('Should have a search button', () => {
+  it('should have a search button', () => {
     render(
       <MemoryRouter>
         <SearchUserPage />
@@ -34,7 +34,7 @@ describe('SearchUserPage', () => {
     expect(screen.getByText('Search')).toBeInTheDocument();
   });
 
-  it('Should lead to the user page when the search button is clicked', async () => {
+  it('should lead to the user page when the search button is clicked', async () => {
     render(
       <Provider store={store}>
         <MemoryRouter initialEntries={['/']}>

@@ -18,7 +18,7 @@ describe('DisplayUserPage', () => {
     expect(screen.getByText('User Result')).toBeInTheDocument();
   });
 
-  it('Should have a back button', () => {
+  it('should have a back button', () => {
     render(
       <Provider store={store}>
         <MemoryRouter>
@@ -33,7 +33,7 @@ describe('DisplayUserPage', () => {
     ).toBeInTheDocument();
   });
 
-  it('Should lead to the search page when the back button is clicked', async () => {
+  it('should lead to the search page when the back button is clicked', async () => {
     render(
       <Provider store={store}>
         <MemoryRouter initialEntries={['/mirouhml']}>
@@ -54,7 +54,7 @@ describe('DisplayUserPage', () => {
     ).toBeInTheDocument();
   });
 
-  it('Should have a user info card', () => {
+  it('should have a user info card', () => {
     render(
       <Provider store={store}>
         <MemoryRouter initialEntries={['/mirouhml']}>
@@ -69,7 +69,7 @@ describe('DisplayUserPage', () => {
     ).toBeInTheDocument();
   });
 
-  it('Should have a repositories list', async () => {
+  it('should have a repositories list', async () => {
     render(
       <Provider store={store}>
         <MemoryRouter initialEntries={['/mirouhml']}>
