@@ -1,10 +1,10 @@
 {
   "files": {
-    "main.css": "/static/css/main.704c0979.css",
-    "main.js": "/static/js/main.77f40635.js",
-    "index.html": "/index.html",
-    "main.704c0979.css.map": "/static/css/main.704c0979.css.map",
-    "main.77f40635.js.map": "/static/js/main.77f40635.js.map"
+    "main.css": "/lovelystay-frontend-coding-test/static/css/main.704c0979.css",
+    "main.js": "/lovelystay-frontend-coding-test/static/js/main.77f40635.js",
+    "index.html": "/lovelystay-frontend-coding-test/index.html",
+    "main.704c0979.css.map": "/lovelystay-frontend-coding-test/static/css/main.704c0979.css.map",
+    "main.77f40635.js.map": "/lovelystay-frontend-coding-test/static/js/main.77f40635.js.map"
   },
   "entrypoints": [
     "static/css/main.704c0979.css",
