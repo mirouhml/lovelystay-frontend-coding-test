@@ -1,45 +1,61 @@
 import React, { ReactElement, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { AppDispatch } from '../app/store';
+import { AppDispatch, RootState } from '../app/store';
 import { getUser } from '../slices/userSlice';
 
 const UserInfoCard = (): ReactElement => {
+  // Dispatch hook for accessing dispatch function from the Redux store
   const dispatch = useDispatch<AppDispatch>();
-  const { user, status, error } = useSelector((state: any) => state.user);
+
+  // Selector hook to get user and status data from the Redux store
+  const { user, status, error } = useSelector((state: RootState) => state.user);
+
+  // Hook to access the username from the URL parameters
   const { username } = useParams<{ username: string }>();
 
+  // useEffect hook to dispatch the getUser action with the username as parameter
+  // when the component is mounted and the username is available
   useEffect(() => {
     if (username) dispatch(getUser(username));
   }, [dispatch, username]);
 
-  if (status.user === 'success')
+  // Check the status of the user data and return the appropriate UI
+  if (status.user === 'success') {
     return (
-      <div className='user-info-card'>
-        <img className='user-avatar' src={user.avatar_url} alt='User profile' />
+      <div className='user-info-card' aria-label='user-info'>
+        <img className='user-avatar' src={user?.avatar_url} alt='User avatar' />
         <div className='user-info'>
           <p className='user-name'>
-            {user.name ? user.name : 'No name was found'}
+            {user?.name ? user.name : 'No name was found'}
           </p>
           <p className='user-repositories'>
-            Number of public repositories: {user.public_repos}
+            Number of public repositories: {user?.public_repos}
           </p>
         </div>
       </div>
     );
-  else if (status.user === 'loading')
+  } else if (status.user === 'loading') {
     return (
-      <div className='user-info-card'>
-        <p className='status-message'>loading...</p>
+      <div className='user-info-card' aria-label='user-info-loading'>
+        <p className='status-message'>Loading...</p>
       </div>
     );
-  else if (status.user === 'failed')
+  } else if (status.user === 'failed') {
     return (
-      <div className='user-info-card'>
+      <div className='user-info-card' aria-label='user-info-error'>
         <p className='status-message'>{error}</p>
       </div>
     );
-  else return <></>;
+  } else {
+    return (
+      <div className='user-info-card' aria-label='user-info-error'>
+        <p className='status-message'>
+          Something went wrong please try again later!
+        </p>
+      </div>
+    );
+  }
 };
 
 export default UserInfoCard;
