@@ -1,1 +1,0 @@
-# lovelystay-frontend-coding-test
