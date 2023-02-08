@@ -1,13 +1,13 @@
 {
   "files": {
     "main.css": "/lovelystay-frontend-coding-test/static/css/main.704c0979.css",
-    "main.js": "/lovelystay-frontend-coding-test/static/js/main.77f40635.js",
+    "main.js": "/lovelystay-frontend-coding-test/static/js/main.736ec764.js",
     "index.html": "/lovelystay-frontend-coding-test/index.html",
     "main.704c0979.css.map": "/lovelystay-frontend-coding-test/static/css/main.704c0979.css.map",
-    "main.77f40635.js.map": "/lovelystay-frontend-coding-test/static/js/main.77f40635.js.map"
+    "main.736ec764.js.map": "/lovelystay-frontend-coding-test/static/js/main.736ec764.js.map"
   },
   "entrypoints": [
     "static/css/main.704c0979.css",
-    "static/js/main.77f40635.js"
+    "static/js/main.736ec764.js"
   ]
 }
