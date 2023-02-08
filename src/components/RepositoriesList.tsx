@@ -1,7 +1,7 @@
 import React, { ReactElement, useEffect, useState, useRef } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { RootState, AppDispatch } from '../app/store';
-import { useParams, useSearchParams } from 'react-router-dom';
+import { useSearchParams } from 'react-router-dom';
 import { getRepos } from '../slices/userSlice';
 import { Repository } from '../types';
 import RepositoryItem from './RepositoryItem';
@@ -12,16 +12,15 @@ const RepositoriesList = (): ReactElement => {
     (state: RootState) => state.user
   );
   const dispatch = useDispatch<AppDispatch>();
-  const { username } = useParams<{ username: string }>();
   const [searchParams, setSearchParams] = useSearchParams();
   const [page, setPage] = useState('1');
   const [numberOfPages, setNumberOfPages] = useState('1');
   const title = useRef<HTMLHeadingElement>(null);
   useEffect(() => {
-    if (username && page && status.user === 'success') {
-      dispatch(getRepos({ username, page }));
+    if (user && page && status.user === 'success') {
+      dispatch(getRepos({ username: user?.login, page }));
     }
-  }, [dispatch, page, username, status.user]);
+  }, [dispatch, page, user, status.user]);
 
   useEffect(() => {
     if (user !== undefined && status.user === 'success') {
@@ -46,10 +45,10 @@ const RepositoriesList = (): ReactElement => {
 
   if (status.user === 'success' && status.repos === 'success')
     return (
-      <div className='repositories-container'>
-        <h1 className='repositories-title' ref={title}>
-          {username}'s Repositories
-        </h1>
+      <div className='repositories-container' aria-label='repositories-list'>
+        <h2 className='repositories-title' ref={title}>
+          {user?.login}'s Repositories
+        </h2>
         <ul>
           {repositories.map((repo: Repository) => (
             <RepositoryItem
@@ -74,19 +73,19 @@ const RepositoriesList = (): ReactElement => {
     );
   else if (status.user === 'success' && status.repos === 'loading')
     return (
-      <div className='repositories-container'>
-        <h1 className='repositories-title' ref={title}>
-          {username}'s Repositories
-        </h1>
+      <div className='repositories-container' aria-label='repositories-list'>
+        <h2 className='repositories-title' ref={title}>
+          {user?.login}'s Repositories
+        </h2>
         <p className='status-message'>Loading...</p>
       </div>
     );
   else if (status.user === 'success' && status.repos === 'failed')
     return (
-      <div className='repositories-container'>
-        <h1 className='repositories-title' ref={title}>
-          {username}'s Repositories
-        </h1>
+      <div className='repositories-container' aria-label='repositories-list'>
+        <h2 className='repositories-title' ref={title}>
+          {user?.login}'s Repositories
+        </h2>
         <p className='status-message'>{error}</p>
       </div>
     );

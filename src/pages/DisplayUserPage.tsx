@@ -13,7 +13,12 @@ const DisplayUserPage = (): ReactElement => {
 
   return (
     <div className='display-user-page'>
-      <button className='back-button' onClick={() => goBack()}>
+      <h1>User Result</h1>
+      <button
+        className='back-button'
+        onClick={() => goBack()}
+        aria-label='back'
+      >
         <IoIosArrowBack size={20} />
       </button>
       <UserInfoCard />

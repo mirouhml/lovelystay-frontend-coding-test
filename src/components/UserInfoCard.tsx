@@ -15,7 +15,7 @@ const UserInfoCard = (): ReactElement => {
 
   if (status.user === 'success')
     return (
-      <div className='user-info-card'>
+      <div className='user-info-card' aria-label='user-info'>
         <img className='user-avatar' src={user.avatar_url} alt='User profile' />
         <div className='user-info'>
           <p className='user-name'>
@@ -29,13 +29,13 @@ const UserInfoCard = (): ReactElement => {
     );
   else if (status.user === 'loading')
     return (
-      <div className='user-info-card'>
+      <div className='user-info-card' aria-label='user-info'>
         <p className='status-message'>loading...</p>
       </div>
     );
   else if (status.user === 'failed')
     return (
-      <div className='user-info-card'>
+      <div className='user-info-card' aria-label='user-info'>
         <p className='status-message'>{error}</p>
       </div>
     );

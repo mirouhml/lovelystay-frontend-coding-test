@@ -9,6 +9,12 @@
   background-color: $secondary-bg;
   border-radius: 7px;
   padding: 20px;
+  h2 {
+    font-size: 2rem;
+    color: $font-color;
+    margin-bottom: 20px;
+    text-align: center;
+  }
   .status-message {
     font-size: 1.5rem;
     color: $font-color;
@@ -55,5 +61,8 @@
   .repositories-container {
     width: 100%;
     padding: 40px 20px;
+    h2 {
+      font-size: 1.5rem;
+    }
   }
 }

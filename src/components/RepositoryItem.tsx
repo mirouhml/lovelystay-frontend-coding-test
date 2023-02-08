@@ -11,7 +11,7 @@ const RepositoryItem = ({
 }: RepositoryItemProps): ReactElement => {
   return (
     <li className='repository-item'>
-      <h2 className='repository-name'>{name}</h2>
+      <h3 className='repository-name'>{name}</h3>
       {description && <p className='repository-description'>{description}</p>}
       {!description && (
         <p className='repository-description'>No description provided</p>
