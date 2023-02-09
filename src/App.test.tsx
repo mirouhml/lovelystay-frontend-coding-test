@@ -1,4 +1,5 @@
 import { render, screen } from '@testing-library/react';
+import { MemoryRouter } from 'react-router-dom';
 import '@testing-library/jest-dom';
 import renderer from 'react-test-renderer';
 import { Provider } from 'react-redux';
@@ -10,7 +11,9 @@ describe('App', () => {
     const tree = renderer
       .create(
         <Provider store={store}>
-          <App />
+          <MemoryRouter initialEntries={['/test/not-a-real-page']}>
+            <App />
+          </MemoryRouter>
         </Provider>
       )
       .toJSON();
@@ -20,9 +23,22 @@ describe('App', () => {
   it('should have a search page as the home page', () => {
     render(
       <Provider store={store}>
-        <App />
+        <MemoryRouter initialEntries={['/']}>
+          <App />
+        </MemoryRouter>
       </Provider>
     );
     expect(screen.getByText('Search for a GitHub user')).toBeInTheDocument();
+  });
+
+  it('should have a 404 page', () => {
+    render(
+      <Provider store={store}>
+        <MemoryRouter initialEntries={['/test/not-a-real-page']}>
+          <App />
+        </MemoryRouter>
+      </Provider>
+    );
+    expect(screen.getByText('404 - Page Not Found')).toBeInTheDocument();
   });
 });
