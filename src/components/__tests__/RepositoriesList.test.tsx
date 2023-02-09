@@ -80,6 +80,59 @@ describe('RepositoriesList', () => {
     expect(screen.getByText('description5')).toBeInTheDocument();
   });
 
+  it('should have render no repositories message', () => {
+    render(
+      <Provider
+        store={mockStore({
+          user: {
+            user: mockUser,
+            repositories: [],
+            status: {
+              user: 'success',
+              repos: 'success',
+            },
+            error: undefined,
+          },
+        } as RootState)}
+      >
+        <MemoryRouter>
+          <RepositoriesList />
+        </MemoryRouter>
+      </Provider>
+    );
+    expect(screen.getByText('No repositories found')).toBeInTheDocument();
+  });
+
+  it('should be able to render without a description', () => {
+    render(
+      <Provider
+        store={mockStore({
+          user: {
+            user: mockUser,
+            repositories: [
+              {
+                id: '1',
+                name: 'repo1',
+                description: '',
+              },
+            ],
+            status: {
+              user: 'success',
+              repos: 'success',
+            },
+            error: undefined,
+          },
+        } as RootState)}
+      >
+        <MemoryRouter>
+          <RepositoriesList />
+        </MemoryRouter>
+      </Provider>
+    );
+    expect(screen.getByText('repo1')).toBeInTheDocument();
+    expect(screen.getByText('No description provided.')).toBeInTheDocument();
+  });
+
   it('should have render loading message', () => {
     render(
       <Provider

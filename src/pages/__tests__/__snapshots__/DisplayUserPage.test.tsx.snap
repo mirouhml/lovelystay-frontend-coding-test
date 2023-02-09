@@ -29,7 +29,7 @@ exports[`DisplayUserPage should match the snapshot 1`] = `
     </svg>
   </button>
   <div
-    aria-label="user-info-error"
+    aria-label="user-info"
     className="user-info-card"
   >
     <p

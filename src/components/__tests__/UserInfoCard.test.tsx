@@ -65,11 +65,7 @@ describe('UserInfoCard', () => {
         </MemoryRouter>
       </Provider>
     );
-    expect(
-      screen.getByRole('generic', {
-        name: /user-info-loading/i,
-      })
-    ).toBeInTheDocument();
+    expect(screen.getByText('Loading...')).toBeInTheDocument();
   });
 
   it('should have render error message', () => {
@@ -83,7 +79,7 @@ describe('UserInfoCard', () => {
               user: 'failed',
               repos: 'idle',
             },
-            error: 'Error',
+            error: 'Something went wrong please try again later!',
           },
         } as RootState)}
       >
@@ -93,9 +89,7 @@ describe('UserInfoCard', () => {
       </Provider>
     );
     expect(
-      screen.getByRole('generic', {
-        name: /user-info-error/i,
-      })
+      screen.getByText('Something went wrong please try again later!')
     ).toBeInTheDocument();
   });
 

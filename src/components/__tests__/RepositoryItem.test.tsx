@@ -10,8 +10,8 @@ describe('RepositoryItem', () => {
   });
 
   it('should render the repository item with no description', () => {
-    render(<RepositoryItem name='test' description='' />);
+    render(<RepositoryItem name='test' />);
     expect(screen.getByText('test')).toBeInTheDocument();
-    expect(screen.getByText('No description provided')).toBeInTheDocument();
+    expect(screen.getByText('No description provided.')).toBeInTheDocument();
   });
 });
