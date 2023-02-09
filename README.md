@@ -61,8 +61,8 @@ This is a coding test for LovelyStay, the goal here is to use GitHub REST API to
 - I used Redux in this project, I felt it's better to use it as in my opinion it simplifies things and it helps me write a cleaner code, I know it wasn't a requirement I hope that's alright.
 - I have used TypeScript as well, I've been using TypeScript more than JavaScript in my React projects recently as it provides the types safety better.
 - I have added a 404 not found page.
-- I didn't quite understand what pagination I should do, so I just mimicked what GitHub has in the repositories page.
-- I didn't use authenticated requests for GitHub API, this is just my personal preference since it's just a test project, I also included a message that shows the rate has been exceeded in case that happens just to be sure I covered all edge cases.
+- I looked to GitHub's repositories page for inspiration on the pagination I implemented.
+- I did my best to cover all edge cases and errors that I can think of, I also added a message that shows the rate has been exceeded, as I didn't use authenticated requests for the API just not to complicate things.
 - I have tried to cover every piece of code I had with the tests I've made, and I am proud to show the results of the coverage:
   ![image](https://user-images.githubusercontent.com/20567503/217895071-7810c076-92b6-4fe8-bc3c-9e2c09c7b499.png)
 
