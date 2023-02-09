@@ -3,25 +3,11 @@
 exports[`App should match the snapshot 1`] = `
 <main>
   <div
-    className="search-user-page"
+    className="not-found-page"
   >
     <h1>
-      Search for a GitHub user
+      404 - Page Not Found
     </h1>
-    <form
-      className="form-container"
-      onSubmit={[Function]}
-    >
-      <input
-        className="search-input"
-        onChange={[Function]}
-        placeholder="Username"
-        required={true}
-      />
-      <button>
-        Search
-      </button>
-    </form>
   </div>
 </main>
 `;
