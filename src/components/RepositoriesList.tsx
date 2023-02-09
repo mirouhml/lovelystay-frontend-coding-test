@@ -13,22 +13,16 @@ const RepositoriesList = (): ReactElement => {
   );
   const dispatch = useDispatch<AppDispatch>();
   const [searchParams, setSearchParams] = useSearchParams();
-  const [page, setPage] = useState('1');
-  const [numberOfPages, setNumberOfPages] = useState('1');
+  const [page, setPage] = useState(1);
+  const [numberOfPages, setNumberOfPages] = useState(1);
 
-  // Fetch repository information if the user is defined and the user status is success
+  // Fetch repository information if the user is defined and the user status is success and then set the number of pages
   useEffect(() => {
-    if (user && page && status.user === 'success') {
+    if (user && status.user === 'success') {
       dispatch(getRepos({ username: user?.login, page }));
+      setNumberOfPages(user.number_of_repo_pages);
     }
   }, [dispatch, page, user, status.user]);
-
-  // Set the number of pages for the repository if the user is defined and the user status is success
-  useEffect(() => {
-    if (user !== undefined && status.user === 'success') {
-      setNumberOfPages(user.number_of_repo_pages.toString());
-    }
-  }, [user, status.user]);
 
   // Handle page change when the user clicks on the previous or next button
   const handlePageChange = (e: React.MouseEvent<HTMLButtonElement>) => {
@@ -36,13 +30,13 @@ const RepositoriesList = (): ReactElement => {
     let newPage;
     const target = e.target as HTMLButtonElement;
     if (target.innerHTML.includes('Previous')) {
-      newPage = parseInt(page) - 1;
+      newPage = page - 1;
     } else {
-      newPage = parseInt(page) + 1;
+      newPage = page + 1;
     }
     searchParams.set('page', newPage.toString());
     setSearchParams(searchParams);
-    setPage(newPage.toString());
+    setPage(newPage);
   };
 
   // Render different components based on the status of the user and repository
@@ -50,17 +44,20 @@ const RepositoriesList = (): ReactElement => {
     return (
       <div className='repositories-container' aria-label='repositories-list'>
         <h2 className='repositories-title'>{user?.login}'s Repositories</h2>
+        <p className='status-message'>
+          {repositories.length === 0 ? 'No repositories found' : ''}
+        </p>
         <ul>
           {repositories.map((repo: Repository) => (
             <RepositoryItem
               key={repo.id}
               name={repo.name}
-              description={repo.description}
+              description={repo.description ? repo.description : undefined}
             />
           ))}
         </ul>
         <div className='repositories-buttons'>
-          <button onClick={(e) => handlePageChange(e)} disabled={page === '1'}>
+          <button onClick={(e) => handlePageChange(e)} disabled={page === 1}>
             <IoIosArrowBack /> Previous
           </button>
           <button

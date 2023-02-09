@@ -48,7 +48,7 @@ export const getUser = createAsyncThunk(
 export const getRepos = createAsyncThunk(
   'user/getRepos',
   // Async function to fetch the repository data
-  async (data: { username: string; page: string }) => {
+  async (data: { username: string; page: number }) => {
     const { username, page } = data;
     const repos = await fetchRepos(username, page);
     return repos;
@@ -56,11 +56,11 @@ export const getRepos = createAsyncThunk(
 );
 
 // Function to determine if the response from the API is an error
-function isAPIError(
+const isAPIError = (
   toBeDetermined: APIUserResponse | APIRepositoryResponse
-): toBeDetermined is APIError {
+): toBeDetermined is APIError => {
   return (toBeDetermined as APIError).message !== undefined;
-}
+};
 
 const userSlice = createSlice({
   name: 'user',
