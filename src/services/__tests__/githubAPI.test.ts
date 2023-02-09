@@ -90,6 +90,20 @@ describe('fetchUser', () => {
       message: 'Something went wrong',
     });
   });
+
+  it('should return an error message if the API rate limit is exceeded', async () => {
+    fetch.mockResponseOnce(
+      JSON.stringify({
+        message: 'GitHub API rate limit exceeded, please try again later.',
+      }),
+      { status: 403 }
+    );
+
+    const user = await fetchUser('error');
+    expect(user).toEqual({
+      message: 'GitHub API rate limit exceeded, please try again later.',
+    });
+  });
 });
 
 describe('fetchRepos', () => {

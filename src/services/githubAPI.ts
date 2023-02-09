@@ -9,8 +9,16 @@ import {
 export const fetchUser = async (username: string): Promise<APIUserResponse> => {
   try {
     // Fetch user information from GitHub API
-    const response = await fetch(`https://api.github.com/users/${username}`);
-    if (!response.ok) {
+    const response = await fetch(`https://api.github.com/users/${username}`, {
+      headers: {
+        'User-Agent': 'request',
+      },
+    });
+    if (response.status === 403) {
+      return {
+        message: 'GitHub API rate limit exceeded, please try again later.',
+      };
+    } else if (!response.ok) {
       return {
         message:
           response.status === 404 ? 'User not found' : response.statusText,
