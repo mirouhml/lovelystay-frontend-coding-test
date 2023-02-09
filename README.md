@@ -63,7 +63,7 @@ This is a coding test for LovelyStay, the goal here is to use GitHub REST API to
 - I have added a 404 not found page.
 - I didn't quite understand what pagination I should do, so I just mimicked what GitHub has in the repositories page.
 - I have tried to cover every piece of code I had with the tests I've made, and I am proud to show the results of the coverage:
-  ![image](https://user-images.githubusercontent.com/20567503/217685223-f16fcdf2-7478-48bd-bb79-697949ad4320.png)
+  ![image](https://user-images.githubusercontent.com/20567503/217887295-9689e09f-a9d9-426e-a649-267ab9f045d6.png)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
