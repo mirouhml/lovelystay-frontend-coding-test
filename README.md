@@ -8,6 +8,7 @@
   - [🛠 Built With](#built-with)
     - [Tech Stack](#tech-stack)
     - [Key Features](#key-features)
+    - [Decisions & Results](#decisions-results)
   - [🚀 Live Demo](#live-demo)
 - [💻 Getting Started](#getting-started)
   - [Setup](#setup)
@@ -48,6 +49,20 @@ This is a coding test for LovelyStay, the goal here is to use GitHub REST API to
 ### Key Features <a name="key-features"></a>
 
 - **Search for a github user and check their information**
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+<!-- Decisions & Results -->
+
+### Decisions & Results <a name="decisions-results"></a>
+
+- I have used `HashRouter` instead of `BrowserRouter` mainly because I deployed the app to GitHub Pages as it doesn't support the technologies used by the latter.
+- I have decided to use SASS in this project, for the colors I chose colors similar to GitHub, I tried to keep it simple and concise I hope you like it.
+- I used Redux in this project, I felt it's better to use it as in my opinion it simplifies things and it helps me write a cleaner code, I know it wasn't a requirement I hope that's alright.
+- I have used TypeScript as well, I've been using TypeScript more than JavaScript in my React projects recently as it provides the types safety better.
+- I have added a 404 not found page.
+- I have tried to cover every piece of code I had with the tests I've made, and I am proud to show the results of the coverage:
+  ![image](https://user-images.githubusercontent.com/20567503/217685223-f16fcdf2-7478-48bd-bb79-697949ad4320.png)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
