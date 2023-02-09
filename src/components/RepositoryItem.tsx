@@ -2,7 +2,7 @@ import React, { ReactElement } from 'react';
 
 interface RepositoryItemProps {
   name: string;
-  description: string;
+  description?: string;
 }
 
 /**
@@ -15,17 +15,14 @@ interface RepositoryItemProps {
  */
 const RepositoryItem = ({
   name,
-  description,
+  description = 'No description provided.',
 }: RepositoryItemProps): ReactElement => {
   return (
     <li className='repository-item'>
       {/* Repository name */}
       <h3 className='repository-name'>{name}</h3>
       {/* Repository description */}
-      {description && <p className='repository-description'>{description}</p>}
-      {!description && (
-        <p className='repository-description'>No description provided</p>
-      )}
+      <p className='repository-description'>{description}</p>
     </li>
   );
 };

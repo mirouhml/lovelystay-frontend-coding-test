@@ -20,42 +20,47 @@ const UserInfoCard = (): ReactElement => {
     if (username) dispatch(getUser(username));
   }, [dispatch, username]);
 
-  // Check the status of the user data and return the appropriate UI
-  if (status.user === 'success') {
-    return (
-      <div className='user-info-card' aria-label='user-info'>
-        <img className='user-avatar' src={user?.avatar_url} alt='User avatar' />
-        <div className='user-info'>
-          <h1 className='user-name'>
-            {user?.name ? user.name : 'No name was found'}
-          </h1>
-          <p className='user-repositories'>
-            Number of public repositories: {user?.public_repos}
-          </p>
-        </div>
-      </div>
-    );
-  } else if (status.user === 'loading') {
-    return (
-      <div className='user-info-card' aria-label='user-info-loading'>
-        <p className='status-message'>Loading...</p>
-      </div>
-    );
+  // Determine the status message based on the value of status.user
+  let statusMessage;
+  // If the user status is "loading", set the status message to "Loading..."
+  if (status.user === 'loading') {
+    statusMessage = 'Loading...';
+    // If the user status is "failed", set the status message to the error
   } else if (status.user === 'failed') {
-    return (
-      <div className='user-info-card' aria-label='user-info-error'>
-        <p className='status-message'>{error}</p>
-      </div>
-    );
+    statusMessage = error;
+    // Otherwise, set the status message to the user's name or "No name was found"
   } else {
-    return (
-      <div className='user-info-card' aria-label='user-info-error'>
-        <p className='status-message'>
-          Something went wrong please try again later!
-        </p>
-      </div>
-    );
+    statusMessage = user?.name ? user.name : 'No name was found';
   }
+
+  return (
+    <div className='user-info-card' aria-label='user-info'>
+      {status.user === 'success' && (
+        <>
+          <img
+            className='user-avatar'
+            src={user?.avatar_url}
+            alt='User avatar'
+          />
+          <div className='user-info'>
+            <h1 className='user-name'>{statusMessage}</h1>
+            <p className='user-repositories'>
+              Number of public repositories: {user?.public_repos}
+            </p>
+          </div>
+        </>
+      )}
+      {status.user !== 'success' && (
+        <p className='status-message'>
+          {status.user === 'loading'
+            ? 'Loading...'
+            : status.user === 'failed'
+            ? error
+            : 'Something went wrong please try again later!'}
+        </p>
+      )}
+    </div>
+  );
 };
 
 export default UserInfoCard;

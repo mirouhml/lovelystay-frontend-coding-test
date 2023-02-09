@@ -15,7 +15,7 @@ describe('fetchUser', () => {
         name: 'John Doe',
         avatar_url: 'https://avatars.githubusercontent.com/u/1?v=4',
         url: 'https://api.github.com/users/johndoe',
-        public_repos: 2,
+        public_repos: 0,
       }),
       { status: 200 }
     );
@@ -26,8 +26,32 @@ describe('fetchUser', () => {
       name: 'John Doe',
       avatar_url: 'https://avatars.githubusercontent.com/u/1?v=4',
       url: 'https://api.github.com/users/johndoe',
-      public_repos: 2,
+      public_repos: 0,
       number_of_repo_pages: 1,
+    });
+  });
+
+  it('should return a user object with a number of repo pages greater than 1', async () => {
+    fetch.mockResponseOnce(
+      JSON.stringify({
+        id: 1,
+        login: 'johndoe',
+        name: 'John Doe',
+        avatar_url: 'https://avatars.githubusercontent.com/u/1?v=4',
+        url: 'https://api.github.com/users/johndoe',
+        public_repos: 12,
+      }),
+      { status: 200 }
+    );
+    const user = await fetchUser('johndoe');
+    expect(user).toEqual({
+      id: 1,
+      login: 'johndoe',
+      name: 'John Doe',
+      avatar_url: 'https://avatars.githubusercontent.com/u/1?v=4',
+      url: 'https://api.github.com/users/johndoe',
+      public_repos: 12,
+      number_of_repo_pages: 2,
     });
   });
 
@@ -48,14 +72,14 @@ describe('fetchUser', () => {
   it('should return an error message if the API is down', async () => {
     fetch.mockResponseOnce(
       JSON.stringify({
-        message: 'API is down',
+        message: 'Service Unavailable',
       }),
       { status: 503 }
     );
 
     const user = await fetchUser('not-a-user');
     expect(user).toEqual({
-      message: 'API is down',
+      message: 'Service Unavailable',
     });
   });
 
@@ -89,7 +113,7 @@ describe('fetchRepos', () => {
       ]),
       { status: 200 }
     );
-    const repos = await fetchRepos('johndoe', '1');
+    const repos = await fetchRepos('johndoe', 1);
     expect(repos).toEqual([
       {
         id: 1,
@@ -107,20 +131,22 @@ describe('fetchRepos', () => {
   it('should return an error message if the API is down', async () => {
     fetch.mockResponseOnce(
       JSON.stringify({
-        message: 'API is down',
+        message: 'Service Unavailable',
       }),
       { status: 503 }
     );
 
-    const user = await fetchRepos('error', '1');
+    const user = await fetchRepos('error', 1);
     expect(user).toEqual({
-      message: 'API is down',
+      message: 'Service Unavailable',
     });
   });
 
   it('should return an error message if something goes wrong', async () => {
-    fetch.mockRejectOnce(() => Promise.reject('API is down'));
-    const repos = await fetchRepos('error', '1');
+    fetch.mockRejectOnce(() =>
+      Promise.reject('Something went wrong please try again later!')
+    );
+    const repos = await fetchRepos('error', 1);
     expect(repos).toEqual({
       message: 'Something went wrong',
     });
