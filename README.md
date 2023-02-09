@@ -48,7 +48,7 @@ This is a coding test for LovelyStay, the goal here is to use GitHub REST API to
 
 ### Key Features <a name="key-features"></a>
 
-- **Search for a github user and check their information**
+- **Search for a github user and check their information and repositories**
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
